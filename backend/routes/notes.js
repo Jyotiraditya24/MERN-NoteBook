@@ -44,7 +44,7 @@ router.post(
   }
 );
 
-// ROUTE 3: Update a new note using POST:"/api/notes/updateNote"
+// ROUTE 3: Update a new note using POST:"/api/notes/updateNote/id"
 router.post("/updateNote/:id", fetchUserMiddleWare, async (req, res) => {
   const { title, description, tag } = req.body;
   try {
@@ -80,13 +80,13 @@ router.post("/updateNote/:id", fetchUserMiddleWare, async (req, res) => {
   }
 });
 
-// ROUTE 4: Delete a Note using
+// ROUTE 4: Delete a Note using DELETE:"/api/notes/deleteNote/id" 
 router.delete("/deleteNote/:id", fetchUserMiddleWare, async (req, res) => {
   try {
     let noteToBeDeleted = await Note.findById(req.params.id);
     if (!noteToBeDeleted) {
       return res.status(404).send("Not Found");
-    }
+     }
 
     if (noteToBeDeleted.user.toString() !== req.user.id) {
       return res.status(401).send("Not Allowed");
