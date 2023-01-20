@@ -45,7 +45,7 @@ router.post(
 );
 
 // ROUTE 3: Update a new note using POST:"/api/notes/updateNote"
-router.post('/updatenote/:id', fetchUserMiddleWare, async (req, res) => {
+router.post("/updateNote/:id", fetchUserMiddleWare, async (req, res) => {
   const { title, description, tag } = req.body;
   try {
     // Create a newNote object
@@ -79,6 +79,24 @@ router.post('/updatenote/:id', fetchUserMiddleWare, async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
- 
+
+// ROUTE 4: Delete a Note using
+router.delete("/deleteNote/:id", fetchUserMiddleWare, async (req, res) => {
+  try {
+    let noteToBeDeleted = await Note.findById(req.params.id);
+    if (!noteToBeDeleted) {
+      return res.status(404).send("Not Found");
+    }
+
+    if (noteToBeDeleted.user.toString() !== req.user.id) {
+      return res.status(401).send("Not Allowed");
+    }
+
+    noteToBeDeleted = await Note.deleteOne({ _id: req.params.id });
+    res.json({ noteToBeDeleted });
+  } catch (err) {  
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 module.exports = router;
