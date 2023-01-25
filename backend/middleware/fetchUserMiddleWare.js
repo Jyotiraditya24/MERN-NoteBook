@@ -9,7 +9,7 @@ const fetchUserMiddleWare = (req,res,next)=>{
         res.status(401).send({error: "please authenticate using a valid token"});
     }
 
-      // jwt.verify()
+    //   jwt.verify()
       const data = jwt.verify(token, JWT_SECRECT); //{ user: { id: '63c05be3e401ae106a690667' }, iat: 1673550819 }
       req.user = data.user;
       next();

@@ -1,0 +1,5 @@
+1> Context api combination of context and useState Hook or in general hooks
+2> Helps to share the state with a component tree
+3> we create a new context where a shared state is available , and now we also have to provide this context to the component tree, so the component in that tree can use it 
+4> we do this via Context Provider
+

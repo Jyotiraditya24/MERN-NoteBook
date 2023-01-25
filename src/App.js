@@ -9,10 +9,12 @@ function App() {
     <div>
       <BrowserRouter>
         <Navbar></Navbar>
-        <Routes>
-          <Route exact path='/home' element={<Home/>}></Route>
-          <Route exact path='/about' element={<About/>}></Route>
-        </Routes>
+        <div className='container'>
+          <Routes>
+            <Route exact path="/home" element={<Home />}></Route>
+            <Route exact path="/about" element={<About />}></Route>
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );

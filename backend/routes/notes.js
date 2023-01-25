@@ -7,8 +7,13 @@ const { body, validationResult } = require("express-validator");
 // ROUTE 1: Get all the notes using GET:"/api/notes/fetchAllNotes"
 
 router.get("/fetchAllNotes", fetchUserMiddleWare, async (req, res) => {
-  const notes = await Note.find({ user: req.user.id }); //.find() always taken an object
-  res.json(notes);
+  try {
+    const notes = await Note.find({ user: req.user.id });
+    res.json(notes);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 // ROUTE 2: Add a new note using POST:"/api/notes/addNote"
@@ -21,7 +26,6 @@ router.post(
     body("description", "It should have at least 5 characters").isLength({
       min: 5,
     }),
-    body(),
   ],
   async (req, res) => {
     try {
