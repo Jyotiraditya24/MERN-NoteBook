@@ -4,13 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   let location = useLocation();
-  useEffect(()=>{
-    console.log(location); //location.pathname //location is an object
-  },[location])
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/home">
           The Note Taking App
         </Link>
         <button
