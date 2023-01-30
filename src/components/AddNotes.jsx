@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { NoteContext } from "../context/notes/noteContext";
 
+
 const AddNotes = () => {
   const context = useContext(NoteContext);
   const { addNote } = context;
@@ -48,7 +49,7 @@ const AddNotes = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary" onClick={handleClick}>
-          Submit
+          ADD A NOTE
         </button>
       </form>
     </div>
